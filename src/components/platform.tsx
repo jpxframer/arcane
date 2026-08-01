@@ -23,7 +23,8 @@ function Card({ card }: { card: PlatformCard }) {
       )}
     >
       <div className="flex flex-col gap-4">
-        <h3 className="text-[28px]/[36px] font-semibold text-balance text-ink">
+        {/* 24 on mobile — these grid cards are denser than the feature cards */}
+        <h3 className="text-[24px]/[32px] font-semibold text-balance text-ink md:text-[28px]/[36px]">
           {card.title}
         </h3>
         <p className="text-base/6 text-muted">{card.body}</p>
