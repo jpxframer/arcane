@@ -122,6 +122,17 @@ Remaining sections, in artboard order:
 2. The rest of the desktop artboard below `y=1741` — not yet pulled from Figma.
 3. Footer.
 
+### 🚀 Deployment — not yet live
+
+Repo: <https://github.com/jpxframer/arcane> (public, `main`).
+
+Vercel deploy was deferred. To ship it: import the repo at <https://vercel.com/new> — Next.js is
+auto-detected, no build config or env vars needed.
+
+**Once deployed,** update `metadataBase` in `src/app/layout.tsx`. It currently points at a
+placeholder (`https://arcane-app.vercel.app`), which will produce wrong absolute OG/social URLs
+until it matches the real domain. Add the live URL to the README too.
+
 ### 📌 Open decisions
 
 - Stats row is 3-up on tablet/desktop but stacked on mobile — confirm that reads well.
