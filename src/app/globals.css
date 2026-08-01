@@ -40,8 +40,31 @@
 }
 
 @layer base {
+  /*
+    Height of the fixed header. Single source of truth — the mobile menu hangs
+    off it and anchored sections offset by it.
+  */
+  :root {
+    --header-height: 72px;
+  }
+
+  @media (width >= 64rem) {
+    :root {
+      --header-height: 92px;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
+  }
+
+  /*
+    The header is fixed, so an anchored section would otherwise land underneath
+    it. Offset every jump by the bar plus a little breathing room. Applies to
+    sections added later without any extra wiring.
+  */
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 16px);
   }
 
   body {

@@ -102,6 +102,15 @@ This resolves to the exact Figma content width at each artboard:
 Breakpoints: mobile `<768`, tablet `md: 768`, desktop `lg: 1024`. The desktop nav and the
 52px headline both switch on at `lg`.
 
+**`--header-height`** (72px, 92px from `lg`) is the single source of truth for the fixed bar.
+Three things derive from it, so change it once:
+
+- `section[id] { scroll-margin-top: calc(var(--header-height) + 16px) }` — without this an
+  anchored jump lands *underneath* the fixed bar. Applies to any section added later
+  automatically, provided it is a `<section>` with an `id`.
+- The hero's top padding, `calc(var(--header-height) + 50px)` (100px at `lg`).
+- The mobile menu's `top`, so it hangs directly off the bar.
+
 ---
 
 ## Progress

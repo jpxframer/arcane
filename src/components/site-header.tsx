@@ -124,8 +124,8 @@ export function SiteHeader() {
 }
 
 /**
- * Sits below the bar (top-[72px]) rather than over it, so the toggle stays
- * visible and tappable as an X while the menu is open.
+ * Sits below the bar rather than over it, so the toggle stays visible and
+ * tappable as an X while the menu is open.
  */
 function MobileMenu({
   open,
@@ -138,7 +138,7 @@ function MobileMenu({
     <div
       inert={!open}
       className={cn(
-        "fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-hidden lg:hidden",
+        "fixed inset-x-0 top-(--header-height) bottom-0 z-40 overflow-hidden lg:hidden",
         !open && "pointer-events-none",
       )}
     >
