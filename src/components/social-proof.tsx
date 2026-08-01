@@ -68,7 +68,7 @@ function FeaturedCard({ className }: { className?: string }) {
             <p className="text-2xl/8 font-medium tracking-[-0.02em] text-bg">
               {FEATURED_TESTIMONIAL.name}
             </p>
-            <p className="text-lg/7 text-[#eef1ff]">
+            <p className="text-lg/7 text-highlight">
               {FEATURED_TESTIMONIAL.role}
             </p>
           </div>

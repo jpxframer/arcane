@@ -69,8 +69,8 @@ src/
 
 ## Status
 
-Hero section complete. Social proof, features, and footer in progress — see
-[Project.md](./Project.md).
+The landing page is complete: hero, social proof, features, platform grid, capabilities,
+pricing, CTA, and footer. See [Project.md](./Project.md) for build notes and design decisions.
 
 ## License
 

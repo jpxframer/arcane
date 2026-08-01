@@ -13,6 +13,8 @@
   --color-ink: #111827;
   --color-muted: #6b7280;
   --color-line: #e6e8f0;
+  /* Figma "Arcane/Highlight" — pale indigo, for copy and chips on indigo */
+  --color-highlight: #eef1ff;
   /* Tinted well the feature illustrations sit in */
   --color-panel: #fafaff;
 

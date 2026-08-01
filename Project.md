@@ -241,10 +241,33 @@ white square, which would be worse than a missing icon). Geometry is untouched.
 > and matching path signatures against known-identity assets. Re-verify the same way if these
 > are ever refreshed.
 
+**CTA band** (`src/components/cta.tsx`) — node `18851:2267`, desktop only.
+
+Indigo rounded card with left-aligned copy and a light `Start for Free`. The decorative
+vector (`#F7F8FC` at 30% opacity) is anchored past the card's top and right edges and clipped,
+as drawn — but only from `lg`. Its left edge lands at `cardWidth + 106 - 686`, so on a 744px
+frame it cuts straight through the copy; at 1160px it clears the text. Below `lg` the card is
+plain indigo.
+
+Its `h2` is SemiBold in Figma. Set to **Medium** to match every other section heading, per the
+owner's standing preference — same call as the Platform section.
+
+**Footer** (`src/components/site-footer.tsx`) — node `18851:2286`, desktop only.
+
+Logo + nav over a divider, then copyright and three social links. Stacks on mobile. Uses a
+32px logo chip, **not** the header's 40px shadowed mark — different asset
+(`logo-mark-footer.svg`, 24×19, note it is *not* square).
+
+### ✅ The landing page is now complete
+
+Hero → Social proof → Features → Platform → Capabilities → Pricing → CTA → Footer.
+
 ### ⬜ Next up
 
-1. The rest of the desktop artboard below `y=5398` — not yet pulled from Figma.
-2. Footer.
+1. Deploy to Vercel (see the Deployment section above) and update `metadataBase`.
+2. Optional polish: scroll-triggered entrance motion on sections below the fold; only the hero
+   animates today.
+3. Replace the placeholder body copy flagged on the Platform and Capabilities sections.
 
 ### 🚀 Deployment — not yet live
 
