@@ -180,9 +180,31 @@ The direction utility is emitted as `reversed ? "lg:flex-row-reverse" : "lg:flex
 both. Tailwind decides conflicts by its own CSS ordering, not by class-string order, so
 emitting both would make the layout depend on an implementation detail.
 
+**Platform grid** (`src/components/platform.tsx`)
+
+Node: desktop `18851:1912` only. "Built for teams that move fast" over a 2×2 grid of flat
+white cards, each a heading, one line of copy, and a product screenshot.
+
+The artboard alternates copy-above and screenshot-above to form a checkerboard. That only
+reads as intentional in two columns, so below `lg` the grid collapses to one column and every
+card leads with its heading (`lg:flex-col-reverse` on cards 2 and 3 only).
+
+Two deliberate differences from the artboard:
+
+- **Container width.** The artboard uses a 1160px content width here, where every other
+  section uses 1216px. We use the standard 1216 so section edges line up down the page.
+- **Cards are flat.** No shadow, per the artboard — the `--shadow-raised-*` and `--shadow-card`
+  stacks do not apply.
+
+> ⚠️ **Two things to confirm with the owner:**
+> 1. This section's `h2` is **SemiBold** in Figma, where the two sections above it are Medium.
+>    Implemented as drawn, but it may be unintentional drift in the design.
+> 2. Cards 1 and 2 share identical body copy ("Monitor progress across tasks…") in the
+>    artboard. Implemented as drawn; likely placeholder text.
+
 ### ⬜ Next up
 
-1. The rest of the desktop artboard below `y=3016` — not yet pulled from Figma.
+1. The rest of the desktop artboard below `y=4230` — not yet pulled from Figma.
 2. Footer.
 
 ### 🚀 Deployment — not yet live
