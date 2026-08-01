@@ -47,7 +47,7 @@ export function Platform() {
     <section id="platform" className="bg-bg">
       <Container className="py-8 md:py-[50px]">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-12">
-          <h2 className="text-[32px]/[40px] font-semibold tracking-[-0.02em] text-balance text-ink md:text-center lg:text-[36px]/[44px]">
+          <h2 className="text-[32px]/[40px] font-medium tracking-[-0.02em] text-balance text-ink md:text-center lg:text-[36px]/[44px]">
             Built for teams that move fast
           </h2>
 

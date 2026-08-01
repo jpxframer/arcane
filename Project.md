@@ -207,11 +207,13 @@ Two deliberate differences from the artboard:
 - **Cards are flat.** No shadow, per the artboard — the `--shadow-raised-*` and `--shadow-card`
   stacks do not apply.
 
-> ⚠️ **Two things to confirm with the owner:**
-> 1. This section's `h2` is **SemiBold** in Figma, where the two sections above it are Medium.
->    Implemented as drawn, but it may be unintentional drift in the design.
-> 2. Cards 1 and 2 share identical body copy ("Monitor progress across tasks…") in the
->    artboard. Implemented as drawn; likely placeholder text.
+A third: this section's `h2` is **SemiBold** in Figma, where every other section heading is
+Medium. Confirmed as unintentional drift and normalised to `font-medium` — do not "restore"
+it from the artboard.
+
+> ⚠️ **Still to confirm with the owner:** cards 1 and 2 share identical body copy
+> ("Monitor progress across tasks…") in the artboard. Implemented as drawn; likely
+> placeholder text that was never replaced.
 
 ### ⬜ Next up
 
