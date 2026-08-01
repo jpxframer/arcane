@@ -52,26 +52,23 @@ export function SiteHeader() {
           <div className="flex items-center justify-between gap-4">
             <Logo />
 
-            {/* Links + CTAs share a group so the 24px gap between them is exact */}
-            <div className="hidden items-center gap-6 lg:flex">
-              <nav className="flex items-center gap-4" aria-label="Main">
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="px-4 py-2 text-lg/7 text-muted transition-colors duration-200 ease-out hover:text-ink"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
+            <nav className="hidden items-center gap-4 lg:flex" aria-label="Main">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="px-4 py-2 text-lg/7 text-muted transition-colors duration-200 ease-out hover:text-ink"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
 
-              <div className="flex items-center gap-2">
-                <Button href="#login" variant="secondary">
-                  Log In
-                </Button>
-                <Button href="#signup">Start for Free</Button>
-              </div>
+            <div className="hidden items-center gap-2 lg:flex">
+              <Button href="#login" variant="secondary">
+                Log In
+              </Button>
+              <Button href="#signup">Start for Free</Button>
             </div>
 
             <button
@@ -156,7 +153,7 @@ function MobileMenu({
       <div
         id="mobile-menu"
         className={cn(
-          "absolute inset-y-0 right-0 flex w-[min(320px,85vw)] flex-col gap-8",
+          "absolute inset-y-0 right-0 flex w-[min(320px,85vw)] flex-col gap-6",
           "overflow-y-auto bg-bg p-6 shadow-2xl",
           "transition-transform duration-300 ease-out",
           open ? "translate-x-0" : "translate-x-full",
@@ -175,7 +172,8 @@ function MobileMenu({
           ))}
         </nav>
 
-        <div className="mt-auto flex flex-col gap-3">
+        {/* No mt-auto — the CTAs sit 24px under the links, not pinned to the bottom */}
+        <div className="flex flex-col gap-3">
           <Button href="#login" variant="secondary" className="w-full">
             Log In
           </Button>
