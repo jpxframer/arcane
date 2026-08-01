@@ -5,10 +5,13 @@ import { CAPABILITIES } from "@/lib/capabilities";
 /**
  * Desktop-only artboard: a 3x2 grid of icon cards. Derived down to two columns
  * at `md` and one on mobile. Card titles follow the dense-card scale.
+ *
+ * Carries `id="features"` — the nav's "Features" link points here, not at
+ * `features.tsx`. See the anchor map in Project.md before renaming it.
  */
 export function Capabilities() {
   return (
-    <section id="capabilities" className="bg-bg">
+    <section id="features" className="bg-bg">
       <Container className="py-8 md:py-[50px]">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-12">
           <h2 className="text-[32px]/[40px] font-medium tracking-[-0.02em] text-balance text-ink md:mx-auto md:max-w-[720px] md:text-center lg:max-w-[1000px] lg:text-[36px]/[44px]">

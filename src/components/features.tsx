@@ -47,9 +47,13 @@ function FeatureCard({ feature }: { feature: Feature }) {
   );
 }
 
+/**
+ * Carries `id="product"` — the nav's "Product" link points here, not at a
+ * component named product. See the anchor map in Project.md before renaming it.
+ */
 export function Features() {
   return (
-    <section id="features" className="bg-bg">
+    <section id="product" className="bg-bg">
       <Container className="py-8 md:py-[50px]">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-12">
           <div className="flex w-full flex-col gap-4 text-left md:mx-auto md:max-w-[560px] md:text-center lg:max-w-[800px]">

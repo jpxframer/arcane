@@ -113,6 +113,23 @@ This resolves to the exact Figma content width at each artboard:
 Breakpoints: mobile `<768`, tablet `md: 768`, desktop `lg: 1024`. The desktop nav and the
 52px headline both switch on at `lg`.
 
+### Anchor map
+
+Nav and footer links resolve to these section `id`s. **Two ids deliberately do not match their
+component filename** — the nav labels were mapped to sections after both were built, and the
+public URLs (`/#product`, `/#features`) matter more than internal naming. Check here before
+renaming an `id`:
+
+| Nav label | `id` | Lives in | Section heading |
+| --- | --- | --- | --- |
+| Home | `home` | `hero.tsx` | — |
+| Product | `product` | **`features.tsx`** | "Everything your team needs to move work forward" |
+| Features | `features` | **`capabilities.tsx`** | "Powerful features designed for modern project management" |
+| Pricing | `pricing` | `pricing.tsx` | "Simple pricing built for growing teams" |
+| — | `testimonials` | `social-proof.tsx` | "Trusted by teams that move fast" |
+| — | `platform` | `platform.tsx` | "Built for teams that move fast" |
+| — | `get-started` | `cta.tsx` | "Ready to take control of your projects?" |
+
 **`--header-height`** (72px, 92px from `lg`) is the single source of truth for the fixed bar.
 Three things derive from it, so change it once:
 
