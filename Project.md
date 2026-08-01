@@ -67,6 +67,19 @@ baked into the primary button's inset shadow stack.
 **Type scale (Figma):** Display 52/56 tracking -0.02em (desktop) · 44/48 tracking -0.02em
 (tablet + mobile) · Paragraph 18/28.
 
+**Section headings** (`h2`): 32/40 mobile · 36/44 from `lg`.
+
+**Card titles** (`h3`) — standing rule, applies to every card from here on:
+
+| Mobile | Tablet | Desktop |
+| --- | --- | --- |
+| **28/36** | 32/40 | 36/44 |
+
+`text-[28px]/[36px] md:text-[32px]/[40px] lg:text-[36px]/[44px]`, tracking `-0.02em`.
+28 is not in the Figma scale — it is the owner's call, sized down so card titles read a step
+below the section heading on a phone. Line height follows the scale's +8 pattern (20→28,
+24→32, 28→36). Supporting text under a card title is 16/24 on mobile, with a 16px gap.
+
 **Buttons:** 44px tall (`px-6 py-2`, 18/28 text), `rounded-lg` (8px), with a layered
 drop-shadow + triple inset shadow.
 

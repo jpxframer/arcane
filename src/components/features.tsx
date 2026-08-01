@@ -25,7 +25,8 @@ function FeatureCard({ feature }: { feature: Feature }) {
         )}
       >
         <div className="flex flex-col gap-4 md:gap-6 lg:w-[592px] lg:shrink-0">
-          <h3 className="text-[32px]/[40px] font-medium tracking-[-0.02em] text-balance text-ink lg:text-[36px]/[44px]">
+          {/* Card titles step 28 -> 32 -> 36. See "Card titles" in Project.md. */}
+          <h3 className="text-[28px]/[36px] font-medium tracking-[-0.02em] text-balance text-ink md:text-[32px]/[40px] lg:text-[36px]/[44px]">
             {feature.title}
           </h3>
           <p className="text-base/6 text-muted lg:text-lg/7">{feature.body}</p>
