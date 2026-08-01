@@ -34,7 +34,12 @@ export function Cta() {
               </p>
             </div>
 
-            <Button href="#signup" variant="secondary" className="self-start">
+            {/* Full width on mobile, natural width from tablet up */}
+            <Button
+              href="#signup"
+              variant="secondary"
+              className="w-full md:w-auto md:self-start"
+            >
               Start for Free
             </Button>
           </div>
