@@ -9,16 +9,29 @@ const sarabun = Sarabun({
   display: "swap",
 });
 
+const SITE_URL = "https://arcane-gamma.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://arcane-app.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: "Arcane — Run your entire project workflow from one dashboard",
   description:
     "Arcane is a modern project management and team collaboration platform built for startups, product teams, and fast-moving organizations. Plan projects, track progress, and deliver work faster.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Arcane — Run your entire project workflow from one dashboard",
     description:
       "Plan projects, track progress, collaborate with your team, and deliver work faster without juggling multiple tools.",
+    url: SITE_URL,
+    siteName: "Arcane",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arcane — Run your entire project workflow from one dashboard",
+    description:
+      "Plan projects, track progress, collaborate with your team, and deliver work faster without juggling multiple tools.",
   },
 };
 

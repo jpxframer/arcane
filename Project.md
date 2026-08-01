@@ -281,21 +281,24 @@ Hero → Social proof → Features → Platform → Capabilities → Pricing →
 
 ### ⬜ Next up
 
-1. Deploy to Vercel (see the Deployment section above) and update `metadataBase`.
+1. Replace the placeholder body copy flagged on the Platform and Capabilities sections — each
+   has two cards sharing identical text in the artboard.
 2. Optional polish: scroll-triggered entrance motion on sections below the fold; only the hero
    animates today.
-3. Replace the placeholder body copy flagged on the Platform and Capabilities sections.
+3. Optional: an OG share image. There is no `opengraph-image` yet, so links unfurl with text
+   only. Adding `src/app/opengraph-image.png` (1200×630) is enough — Next wires it up.
+4. Run Lighthouse against the live URL; `Styles/saas.md` targets 90+.
 
-### 🚀 Deployment — not yet live
+### 🚀 Deployment — live
 
-Repo: <https://github.com/jpxframer/arcane> (public, `main`).
+- **Live:** <https://arcane-gamma.vercel.app>
+- **Repo:** <https://github.com/jpxframer/arcane> (public, `main`)
 
-Vercel deploy was deferred. To ship it: import the repo at <https://vercel.com/new> — Next.js is
-auto-detected, no build config or env vars needed.
+Vercel builds from `main`; every push deploys. No build config or env vars.
 
-**Once deployed,** update `metadataBase` in `src/app/layout.tsx`. It currently points at a
-placeholder (`https://arcane-app.vercel.app`), which will produce wrong absolute OG/social URLs
-until it matches the real domain. Add the live URL to the README too.
+`SITE_URL` in `src/app/layout.tsx` is the single source for `metadataBase`, the canonical URL,
+and the OG/Twitter tags. **If the domain ever changes, update it there** — absolute social URLs
+are generated from it and will silently point at the old host otherwise.
 
 ### 📌 Resolved decisions
 
