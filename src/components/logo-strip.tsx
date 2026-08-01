@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { COMPANY_LOGOS } from "@/lib/social-proof";
-import { cn } from "@/lib/cn";
 
 const LABEL =
   "Trusted by teams at Trello, Dropbox, Notion, Zoom, Framer, and Figma";
+
+/** Three copies keeps the loop seamless at the widest container — see globals.css */
+const COPIES = 3;
 
 /**
  * Framer is two separate vector groups in Figma — a mark and a wordmark — so it
@@ -34,15 +36,10 @@ function FramerLogo() {
   );
 }
 
-function LogoSet({ trailingGap }: { trailingGap?: boolean }) {
+/** One set carries its own trailing gap so the seam matches the internal spacing. */
+function LogoSet() {
   return (
-    <div
-      className={cn(
-        "flex shrink-0 items-center gap-12",
-        "motion-reduce:flex-wrap motion-reduce:justify-center",
-        trailingGap && "pr-12 motion-reduce:pr-0",
-      )}
-    >
+    <div className="flex shrink-0 items-center gap-12 pr-12">
       {COMPANY_LOGOS.map((logo) =>
         logo.src === null ? (
           <FramerLogo key={logo.name} />
@@ -66,24 +63,15 @@ function LogoSet({ trailingGap }: { trailingGap?: boolean }) {
 
 export function LogoStrip() {
   return (
-    <div className="w-full" role="img" aria-label={LABEL}>
-      {/*
-        Below 1024px the strip is wider than the viewport — the artboards run it
-        off both edges — so it scrolls. At lg it fits and sits centred as drawn.
-        The track holds two identical sets, each carrying its own trailing gap,
-        so the -50% shift lands one set over and loops seamlessly.
-      */}
-      <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] lg:hidden motion-reduce:[mask-image:none]">
-        <div className="animate-marquee flex w-max motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center">
-          <LogoSet trailingGap />
-          <div className="contents motion-reduce:hidden">
-            <LogoSet trailingGap />
-          </div>
-        </div>
-      </div>
-
-      <div className="hidden lg:flex lg:justify-center">
-        <LogoSet />
+    <div
+      className="marquee-fade w-full overflow-hidden"
+      role="img"
+      aria-label={LABEL}
+    >
+      <div className="animate-marquee flex w-max">
+        {Array.from({ length: COPIES }, (_, index) => (
+          <LogoSet key={index} />
+        ))}
       </div>
     </div>
   );

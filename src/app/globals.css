@@ -73,19 +73,46 @@
     animation: arcane-rise 600ms var(--ease-out-soft) both;
   }
 
-  /* Logo marquee. The track holds two identical sets, each carrying its own
-     trailing gap, so a -50% shift lands exactly one set over and loops seamlessly. */
+  /*
+    Logo marquee. The track holds exactly THREE identical sets, each carrying
+    its own trailing gap, so a -33.3333% shift lands precisely one set over and
+    loops seamlessly. Three rather than two because the loop is only seamless
+    while (copies - 1) x copyWidth >= container width, and one copy (~866px) is
+    narrower than the 1216px desktop container. Changing the copy count means
+    changing this percentage.
+  */
   @keyframes arcane-marquee {
     from {
       transform: translate3d(0, 0, 0);
     }
     to {
-      transform: translate3d(-50%, 0, 0);
+      transform: translate3d(-33.3333%, 0, 0);
     }
   }
 
   .animate-marquee {
     animation: arcane-marquee 32s linear infinite;
+    /* Own compositor layer — without this iOS Safari can drop the animation */
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Edge fade. -webkit- prefix included: iOS Safari needs it. */
+  .marquee-fade {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
   }
 }
 
@@ -94,8 +121,7 @@
     scroll-behavior: auto;
   }
 
-  .animate-rise,
-  .animate-marquee {
+  .animate-rise {
     animation: none !important;
   }
 
@@ -105,5 +131,17 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /*
+    Deliberate exception, at the project owner's request: the logo marquee keeps
+    running even when the OS asks to reduce motion. Many phones ship with Reduce
+    Motion enabled, which was leaving the strip frozen. Re-asserted after the
+    blanket rule above so it wins.
+  */
+  .animate-marquee {
+    animation: arcane-marquee 32s linear infinite !important;
+    animation-duration: 32s !important;
+    animation-iteration-count: infinite !important;
   }
 }

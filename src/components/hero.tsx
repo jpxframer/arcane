@@ -43,11 +43,11 @@ export function Hero() {
       </Container>
 
       {/*
-        The dashboard is framed differently at every breakpoint, per the designs:
-        mobile bleeds it off the right edge, tablet contains it, and desktop
-        crops it at the fold so it rises out of the bottom of the viewport.
+        Mobile bleeds the dashboard off the right edge, as drawn. Tablet and
+        desktop show it in full — the artboard crops it at the fold, but we
+        deliberately let the whole image breathe here.
       */}
-      <div className="animate-rise overflow-hidden lg:h-[512px]" style={{ animationDelay: "240ms" }}>
+      <div className="animate-rise overflow-hidden" style={{ animationDelay: "240ms" }}>
         <div className="md:px-8">
           <div className="ml-5 w-[750px] md:mx-auto md:w-full md:max-w-[1216px]">
             <Image

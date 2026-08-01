@@ -135,7 +135,8 @@ export function SocialProof() {
     <section id="product" className="bg-bg">
       <Container className="py-[50px]">
         <div className="flex flex-col items-center gap-6 md:gap-8 lg:gap-12">
-          <div className="flex flex-col gap-4 text-center md:max-w-[448px] lg:max-w-[800px]">
+          {/* Left-aligned on mobile, as the artboard has it; centred from 768px up */}
+          <div className="flex w-full flex-col gap-4 text-left md:mx-auto md:max-w-[448px] md:text-center lg:max-w-[800px]">
             <h2 className="text-[32px]/[40px] font-medium tracking-[-0.02em] text-balance text-ink lg:text-[36px]/[44px]">
               Trusted by teams that move fast
             </h2>

@@ -105,11 +105,14 @@ Per-breakpoint behaviour, taken from the artboards:
 | Header height | 72px | 72px | 92px |
 | Headline | 44/48, **left-aligned** | 44/48, centered | 52/56, centered, 800px cap |
 | CTAs | Stacked, full-width | Row, centered | Row, centered |
-| Dashboard | 750px wide at `ml-5` — **bleeds off the right edge** | 680px, contained | 1216px, **cropped at the 512px fold** |
+| Dashboard | 750px wide at `ml-5` — **bleeds off the right edge** | 680px, contained | 1216px, shown in full |
 
-The three dashboard treatments are deliberate and all come from the artboards. Mobile bleeds
-right; desktop crops at the fold so the dashboard rises out of the bottom of the viewport.
-All three share the same 1216/787 aspect ratio, so one image serves all of them.
+Mobile bleeds the dashboard off the right edge, as drawn. All breakpoints share the same
+1216/787 aspect ratio, so one image serves all of them.
+
+> **Intentional divergence from the artboard:** the desktop design crops the dashboard at the
+> 512px fold. We show it in full instead — owner's call, so the whole product shot is visible.
+> Do not "fix" this back to the artboard.
 
 Also done: design tokens, Sarabun wiring, `Container` / `Button` / `Logo` primitives, mobile
 drawer (Escape to close, scroll lock, focus-visible rings), staggered entrance motion,
@@ -124,7 +127,7 @@ Nodes: desktop `18851:1599`, tablet `18851:2871`, mobile `18851:2657`.
 | Heading | 32/40, 16/24 body | same, capped 448px | 36/44, 18/28 body, capped 800px |
 | Cards | Stacked | Stacked full-width | 3-col grid |
 | Stats | Stacked, 36/44 | 3-up row, 40/48 | 3-up row, 40/48 |
-| Logo strip | Marquee | Marquee | Static, centred |
+| Logo strip | Marquee | Marquee | Marquee |
 | Gaps | 24 | 32 | 48 heading / 32 cards |
 
 Desktop grid: the featured card holds column one across both rows
@@ -155,10 +158,15 @@ until it matches the real domain. Add the live URL to the README too.
 
 - **Stats** — artboards settled it: 3-up from 768px, stacked on mobile with the number
   stepping 40/48 → 36/44.
-- **Logo strip** — the strip is wider than the frame on mobile and tablet (it runs off both
-  edges in the artboards) but fits at desktop. Implemented as a marquee below `lg` with an
-  edge mask, static and centred at `lg`. Under `prefers-reduced-motion` the track wraps and
-  the duplicate set is hidden, so all six logos stay visible without movement.
+- **Logo strip** — marquee at **every** breakpoint (owner's call; the artboard has it static
+  at desktop), with a fading edge mask. Three details that matter if you touch it:
+  - The track holds exactly **three** copies and shifts `-33.3333%`. Two copies is the usual
+    trick, but the loop is only seamless while `(copies - 1) x copyWidth >= containerWidth`,
+    and one copy (~866px) is narrower than the 1216px desktop container. Change the copy
+    count and you must change the percentage in `globals.css` to match.
+  - `will-change: transform` + `backface-visibility: hidden` — without these iOS Safari
+    intermittently drops the animation.
+  - The edge mask sets `-webkit-mask-image` as well as `mask-image`; iOS Safari needs it.
 
 ---
 
@@ -196,6 +204,9 @@ npm run lint
 
 ## Conventions
 
+- **Mobile text is left-aligned.** Every section's heading and body copy aligns left below
+  768px and centres from `md` up (`text-left md:text-center`). This applies to all sections,
+  current and future.
 - Commits are the repo owner's alone — **no AI co-author trailers**.
 - Server Components by default; `"use client"` only where state is needed (currently just
   the header drawer).
