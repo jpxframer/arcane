@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arcane
 
-## Getting Started
+A marketing landing page for **Arcane**, a project management and team collaboration platform.
+Built from a Figma design, implemented across three breakpoints.
 
-First, run the development server:
+---
+
+## About
+
+Arcane is a portfolio project: a fictional SaaS product used as a vehicle for a carefully
+built, fully responsive marketing site. The design was authored in Figma and implemented
+against three distinct artboards — mobile (393px), tablet (744px), and desktop (1440px) —
+each with its own layout rather than a single scaled one.
+
+Some details worth a look:
+
+- The hero dashboard is framed differently at every breakpoint. On mobile it bleeds off the
+  right edge, on tablet it sits contained, and on desktop it is cropped at the fold so it
+  appears to rise out of the bottom of the viewport.
+- Design tokens are lifted 1:1 from Figma variables into Tailwind v4's `@theme`, so colours
+  and shadows have a single source of truth.
+- Buttons reproduce the layered inset + drop shadow stack from the design rather than
+  approximating it with a flat shadow.
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) — App Router, Turbopack
+- React 19 · TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com) — CSS-first config via `@theme`
+- Sarabun via `next/font`
+- Deployed on [Vercel](https://vercel.com)
+
+No animation library — entrance motion is CSS keyframes, gated behind `prefers-reduced-motion`.
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # production build
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── globals.css      # design tokens (@theme) + base styles + motion
+│   ├── layout.tsx       # font wiring, metadata
+│   └── page.tsx
+├── components/
+│   ├── hero.tsx
+│   ├── logo.tsx
+│   ├── site-header.tsx  # desktop nav + mobile drawer
+│   └── ui/
+│       ├── button.tsx
+│       └── container.tsx
+└── lib/cn.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+`Project.md` tracks build progress and the design decisions behind each section.
+`Styles/` holds the design guidelines the project is built against.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Status
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Hero section complete. Social proof, features, and footer in progress — see
+[Project.md](./Project.md).
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
