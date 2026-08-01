@@ -138,9 +138,29 @@ to 384px columns — the artboard value.
 Content lives in `src/lib/social-proof.ts`. Testimonials use `figure` /
 `blockquote` / `figcaption`.
 
+**Features** (`src/components/features.tsx`)
+
+Node: desktop `18851:1691` only — **no tablet or mobile artboard exists**, so the smaller
+breakpoints are derived. From here on, later sections are desktop-only too.
+
+Two alternating cards: copy + illustration side-by-side from `lg`, stacked below it (the
+744px tablet frame is too narrow to hold a 592px copy column beside an illustration). Card two
+reverses to illustration-left via `lg:flex-row-reverse`.
+
+Spacing, per the owner's brief rather than the artboard:
+
+| | Mobile | Tablet | Desktop |
+| --- | --- | --- | --- |
+| Card padding | 16px | 24px | 24px |
+| Copy ↔ illustration | 16px (stacked) | 24px (stacked) | 32px (side-by-side) |
+
+The direction utility is emitted as `reversed ? "lg:flex-row-reverse" : "lg:flex-row"` — never
+both. Tailwind decides conflicts by its own CSS ordering, not by class-string order, so
+emitting both would make the layout depend on an implementation detail.
+
 ### ⬜ Next up
 
-1. The rest of the desktop artboard below `y=1741` — not yet pulled from Figma.
+1. The rest of the desktop artboard below `y=3016` — not yet pulled from Figma.
 2. Footer.
 
 ### 🚀 Deployment — not yet live
@@ -186,6 +206,9 @@ are the real bytes, not hotlinks):
 - `public/logos/*.svg` — Trello, Dropbox, Notion, Zoom, Figma, plus Framer as two files
   (`framer-mark`, `framer-wordmark`) since Figma splits it into two vector groups
 - `public/avatars/*.png` — the three testimonial portraits, masked to circles in CSS
+- `public/images/feature-*.png` — the two feature illustrations, exported at **2x PNG**.
+  Exported as SVG they were 1.3MB and 2.5MB, because each embeds raster avatars as base64;
+  the 2x PNGs are 191KB and 123KB. Re-export as PNG if these ever need refreshing.
 
 > ⚠️ **Asset gotcha:** `download_assets` `export` output for several nodes came back with a
 > `#262628` full-page background rect baked in. Always prefer the `svgAssets` leaves, or the
