@@ -5,7 +5,11 @@ import { Container } from "@/components/ui/container";
 export function Hero() {
   return (
     <section id="home" className="overflow-hidden bg-bg">
-      <Container className="pt-[50px] pb-[50px] md:pb-[82px] lg:pt-[100px] lg:pb-12">
+      {/*
+        Top padding clears the fixed header (72px / 92px at lg) and then adds
+        the gap the artboards specify below it (50px / 100px).
+      */}
+      <Container className="pt-[122px] pb-[50px] md:pb-[82px] lg:pt-[192px] lg:pb-12">
         <div className="flex flex-col gap-4 text-left md:items-center md:gap-6 md:text-center lg:mx-auto lg:max-w-[800px]">
           <div className="flex flex-col gap-2 md:gap-4 lg:gap-2">
             <h1
