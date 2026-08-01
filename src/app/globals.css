@@ -17,17 +17,18 @@
   /* Type */
   --font-sans: var(--font-sarabun), ui-sans-serif, system-ui, sans-serif;
 
-  /* Elevation — the layered inner/outer shadows the buttons use in Figma */
-  --shadow-btn-primary:
+  /* Elevation — the layered inner/outer shadows Figma uses on every raised
+     surface: buttons, testimonial cards, and the stats panel alike. */
+  --shadow-raised-primary:
     inset 0 2px 2px 0 var(--color-primary-edge),
     inset 0 -4px 4px 0 rgb(0 0 0 / 0.2),
     inset 0 4px 4px 0 rgb(255 255 255 / 0.25);
-  --shadow-btn-secondary:
+  --shadow-raised-secondary:
     inset 0 2px 2px 0 var(--color-bg),
     inset 0 -2px 2px 0 rgb(0 0 0 / 0.2),
     inset 0 4px 4px 0 rgb(255 255 255 / 0.25);
-  --drop-shadow-btn-primary: 0 4px 7.5px rgb(0 0 0 / 0.25);
-  --drop-shadow-btn-secondary: 0 4px 5px rgb(0 0 0 / 0.15);
+  --drop-shadow-raised-primary: 0 4px 7.5px rgb(0 0 0 / 0.25);
+  --drop-shadow-raised-secondary: 0 4px 5px rgb(0 0 0 / 0.15);
 
   /* Motion — saas.md: 150–200ms hover, 200–300ms transitions, ease-out */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
@@ -71,6 +72,21 @@
   .animate-rise {
     animation: arcane-rise 600ms var(--ease-out-soft) both;
   }
+
+  /* Logo marquee. The track holds two identical sets, each carrying its own
+     trailing gap, so a -50% shift lands exactly one set over and loops seamlessly. */
+  @keyframes arcane-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .animate-marquee {
+    animation: arcane-marquee 32s linear infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,7 +94,8 @@
     scroll-behavior: auto;
   }
 
-  .animate-rise {
+  .animate-rise,
+  .animate-marquee {
     animation: none !important;
   }
 

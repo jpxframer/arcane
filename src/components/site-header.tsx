@@ -79,7 +79,7 @@ export function SiteHeader() {
               aria-controls="mobile-menu"
               className={cn(
                 "relative flex size-10 items-center justify-center rounded-lg bg-primary p-2 lg:hidden",
-                "shadow-(--shadow-btn-primary) drop-shadow-(--drop-shadow-btn-primary)",
+                "shadow-(--shadow-raised-primary) drop-shadow-(--drop-shadow-raised-primary)",
                 "transition-transform duration-200 ease-out active:scale-95",
               )}
             >

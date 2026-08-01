@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary";
@@ -11,14 +11,14 @@ const base =
 const variants: Record<Variant, string> = {
   primary: cn(
     "bg-primary font-semibold text-white",
-    "shadow-(--shadow-btn-primary)",
-    "drop-shadow-(--drop-shadow-btn-primary)",
+    "shadow-(--shadow-raised-primary)",
+    "drop-shadow-(--drop-shadow-raised-primary)",
     "hover:drop-shadow-[0_6px_10px_rgb(0_0_0/0.28)]",
   ),
   secondary: cn(
     "bg-bg font-normal text-ink",
-    "shadow-(--shadow-btn-secondary)",
-    "drop-shadow-(--drop-shadow-btn-secondary)",
+    "shadow-(--shadow-raised-secondary)",
+    "drop-shadow-(--drop-shadow-raised-secondary)",
     "hover:drop-shadow-[0_6px_8px_rgb(0_0_0/0.18)]",
   ),
 };

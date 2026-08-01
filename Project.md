@@ -68,8 +68,12 @@ baked into the primary button's inset shadow stack.
 (tablet + mobile) · Paragraph 18/28.
 
 **Buttons:** 44px tall (`px-6 py-2`, 18/28 text), `rounded-lg` (8px), with a layered
-drop-shadow + triple inset shadow. Both shadow stacks live as tokens
-(`--shadow-btn-*`, `--drop-shadow-btn-*`).
+drop-shadow + triple inset shadow.
+
+**Raised surfaces:** that same shadow stack is what Figma puts on buttons, testimonial
+cards, and the stats panel alike, so it lives as shared tokens —
+`--shadow-raised-{primary,secondary}` and `--drop-shadow-raised-{primary,secondary}`.
+Primary = indigo fill, secondary = `#F7F8FC` fill.
 
 ---
 
@@ -111,16 +115,30 @@ Also done: design tokens, Sarabun wiring, `Container` / `Button` / `Logo` primit
 drawer (Escape to close, scroll lock, focus-visible rings), staggered entrance motion,
 reduced-motion handling, SEO metadata.
 
+**Social proof** (`src/components/social-proof.tsx`, `src/components/logo-strip.tsx`)
+
+Nodes: desktop `18851:1599`, tablet `18851:2871`, mobile `18851:2657`.
+
+| | Mobile (393) | Tablet (744) | Desktop (1440) |
+| --- | --- | --- | --- |
+| Heading | 32/40, 16/24 body | same, capped 448px | 36/44, 18/28 body, capped 800px |
+| Cards | Stacked | Stacked full-width | 3-col grid |
+| Stats | Stacked, 36/44 | 3-up row, 40/48 | 3-up row, 40/48 |
+| Logo strip | Marquee | Marquee | Static, centred |
+| Gaps | 24 | 32 | 48 heading / 32 cards |
+
+Desktop grid: the featured card holds column one across both rows
+(`lg:row-span-2`), the two quotes sit beside it, and the stats panel spans the
+remaining two columns (`lg:col-span-2`). `lg:grid-cols-3` with `gap-8` resolves
+to 384px columns — the artboard value.
+
+Content lives in `src/lib/social-proof.ts`. Testimonials use `figure` /
+`blockquote` / `figcaption`.
+
 ### ⬜ Next up
 
-Remaining sections, in artboard order:
-
-1. **Social proof** — "Trusted by teams that move fast" heading + testimonial cards
-   (1 featured + 2 secondary), stats row (120K+ / 5M+ / 10,000+), logo strip
-   (Trello, Dropbox, Zoom, Framer, +2). Desktop `18851:1599`, tablet `18851:2872`,
-   mobile `18851:2658`.
-2. The rest of the desktop artboard below `y=1741` — not yet pulled from Figma.
-3. Footer.
+1. The rest of the desktop artboard below `y=1741` — not yet pulled from Figma.
+2. Footer.
 
 ### 🚀 Deployment — not yet live
 
@@ -133,11 +151,14 @@ auto-detected, no build config or env vars needed.
 placeholder (`https://arcane-app.vercel.app`), which will produce wrong absolute OG/social URLs
 until it matches the real domain. Add the live URL to the README too.
 
-### 📌 Open decisions
+### 📌 Resolved decisions
 
-- Stats row is 3-up on tablet/desktop but stacked on mobile — confirm that reads well.
-- Logo strip overflows its frame horizontally in all three artboards (marquee?). Needs a call
-  on whether it auto-scrolls or is a static, wrapped grid.
+- **Stats** — artboards settled it: 3-up from 768px, stacked on mobile with the number
+  stepping 40/48 → 36/44.
+- **Logo strip** — the strip is wider than the frame on mobile and tablet (it runs off both
+  edges in the artboards) but fits at desktop. Implemented as a marquee below `lg` with an
+  edge mask, static and centred at `lg`. Under `prefers-reduced-motion` the track wraps and
+  the duplicate set is hidden, so all six logos stay visible without movement.
 
 ---
 
@@ -150,6 +171,18 @@ are the real bytes, not hotlinks):
 - `public/icons/logo-mark.svg` — 70×70 viewBox; the mark is 40×40 with a drop-shadow filter
   bleeding 15px horizontally / 11px up / 19px down. Positioned literally in `logo.tsx`.
 - `public/icons/menu.svg` — 24×24 hamburger, `#F7F8FC` stroke (sits on the indigo button)
+- `public/icons/quote-up.svg` — 78.167×62.834, `#F7F8FC`, centred in a 92px box
+- `public/icons/quote-up-dark.svg` — 41.5×33.5, `#111827`, centred in a 48px box.
+  **Not** a scale of the light one; their filter bleed differs, so each keeps its own size.
+- `public/icons/star.svg` — 20×20, `#FBBF24`
+- `public/logos/*.svg` — Trello, Dropbox, Notion, Zoom, Figma, plus Framer as two files
+  (`framer-mark`, `framer-wordmark`) since Figma splits it into two vector groups
+- `public/avatars/*.png` — the three testimonial portraits, masked to circles in CSS
+
+> ⚠️ **Asset gotcha:** `download_assets` `export` output for several nodes came back with a
+> `#262628` full-page background rect baked in. Always prefer the `svgAssets` leaves, or the
+> asset URLs referenced inside `get_design_context` output, and check for `#262628` /
+> `Full Page` before committing an SVG.
 
 ---
 
