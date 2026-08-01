@@ -133,7 +133,7 @@ function StatsCard({ className }: { className?: string }) {
 export function SocialProof() {
   return (
     <section id="product" className="bg-bg">
-      <Container className="py-[50px]">
+      <Container className="py-8 md:py-[50px]">
         <div className="flex flex-col items-center gap-6 md:gap-8 lg:gap-12">
           {/* Left-aligned on mobile, as the artboard has it; centred from 768px up */}
           <div className="flex w-full flex-col gap-4 text-left md:mx-auto md:max-w-[448px] md:text-center lg:max-w-[800px]">

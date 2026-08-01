@@ -280,11 +280,24 @@ npm run build   # production build
 npm run lint
 ```
 
+### Previewing on a phone
+
+Open the **Network** URL the dev server prints, not localhost. `allowedDevOrigins` in
+`next.config.ts` must cover that address or Next blocks `/_next/*` dev resources — the page
+still renders from SSR HTML, but the client bundle never loads, so **nothing is interactive**
+(the mobile menu silently does nothing). The block is logged as
+`⚠ Blocked cross-origin request to Next.js dev resource`. Note that `allowedDevOrigins`
+matches host patterns, **not CIDR** — `192.168.*.*` works, `192.168.0.0/16` does not.
+
+Dev-only. Production builds are unaffected.
+
 ## Conventions
 
 - **Mobile text is left-aligned.** Every section's heading and body copy aligns left below
   768px and centres from `md` up (`text-left md:text-center`). This applies to all sections,
   current and future.
+- **Section padding** is `py-8 md:py-[50px]` (32px mobile, 50px from `md`) for every section
+  after the hero. The hero keeps its own top padding, which is derived from `--header-height`.
 - Commits are the repo owner's alone — **no AI co-author trailers**.
 - Server Components by default; `"use client"` only where state is needed (currently just
   the header drawer).
