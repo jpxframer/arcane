@@ -215,9 +215,35 @@ it from the artboard.
 > ("Monitor progress across tasks…") in the artboard. Implemented as drawn; likely
 > placeholder text that was never replaced.
 
+**Capabilities grid** (`src/components/capabilities.tsx`) — node `18851:1960`, desktop only.
+
+3×2 grid of icon cards → 2 columns at `md`, 1 on mobile. 16px gap, flat white cards, dense
+card-title scale.
+
+**Pricing** (`src/components/pricing.tsx`) — node `18851:2054`, desktop only.
+
+Three plans side by side at `lg`, stacked below (at 744px three columns would leave each plan
+under 250px). Starter shows "Free Plan" in place of a figure and has no billing period, so
+`period` is optional in `src/lib/pricing.ts`. Reuses the shared `Button` for the CTA.
+
+This section carries `id="pricing"`, so the nav's Pricing link now resolves.
+
+**Icons** (`src/components/ui/icon-chip.tsx`)
+
+Figma draws these as a **black-stroked glyph used as an alpha mask** over a white fill. We
+recolour the exported asset to `stroke="white"` and draw it directly instead — visually
+identical, and it does not depend on CSS mask support (an unsupported mask renders as a solid
+white square, which would be worse than a missing icon). Geometry is untouched.
+
+> ⚠️ **Mapping icons to cards: do not trust `download_assets` batch order.** Calling it on a
+> parent returns the subtree's SVGs in an order that is *not* document order — feature card 1
+> matched batch index 2. The mapping here was established by downloading each icon's own node
+> and matching path signatures against known-identity assets. Re-verify the same way if these
+> are ever refreshed.
+
 ### ⬜ Next up
 
-1. The rest of the desktop artboard below `y=4230` — not yet pulled from Figma.
+1. The rest of the desktop artboard below `y=5398` — not yet pulled from Figma.
 2. Footer.
 
 ### 🚀 Deployment — not yet live
